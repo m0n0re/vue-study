@@ -8,9 +8,75 @@
 </head>
 
 <body>
+    <!-- 
+        js側に定義したVueオブジェクトが持つdataのmessageから
+        値を取得して画面に表示してくれる。
+    -->
     <div id="app">
         <p>{{ message }}</p>
     </div>
+
+    <!--
+        v-text:文字列をテンプレートに埋め込むことができる
+    -->
+    <div id="app2">
+        <p v-text="message"></p>
+    </div>
+
+    <!--
+        v-pre:{{...}}構文を無効化する
+    -->
+    <div id="app3">
+        <p v-pre>{{ message }}</p>
+    </div>
+
+    <!--
+        v-bind:属性値の値をdataから引っ張りたいときはこれを使う
+        コロンの後ろは引数でHTMLの属性値をつける
+        v-bindはよく使われるので省略形で書くこともできる。
+    -->
+    <div id="app4">
+        <a v-bind:href="url">WINGSプロジェクト</a>
+        <br>
+        <!-- 省略形でv-bind: → : -->
+        <a :href="url">WINGSプロジェクト(省略形)</a>
+    </div>
+
+    <!--
+        ブール属性の取り扱いについて
+        タグ内に属性値があるだけで意味があるchecked selected,disabledなどは
+        trueやfalseなどの値を設定する
+        ・disabled=trueでボタンを無効化する
+        ・disabled=falseでボタンを有効化する
+    -->
+    <div id="app5">
+        <input type="button" value="クリック" v-bind:disabled="flag" />
+        <br>
+        <input type="button" value="クリック2" v-bind:disabled="flag2" />
+    </div>
+
+    <!-- 
+        {{...}} の中に式を書けるでもHTML側には書かない方がいい。
+        こういうときは算出プロパティというものを使う。
+     -->
+    <div id="app6">
+        <p>式全部書く：{{ email.split('@')[0].toLowerCase() }}</p>
+        <p>算出プロパティ：{{ localEmail }}</p>
+    </div>
+
+    <div id="app7">
+        <p>methods: {{ localEmail() }}</p>
+    </div>
+
+    <div id="app8">
+        <form>
+            <input type="button" value="クリック" v-on:click="onclick">
+            <div>算出プロパティ：{{ randomc }}</div>
+            <div>メソッド：{{ randomm() }}</div>
+            <div>現在日時：{{current}}</div>
+        </form>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/myScripts.js"></script>
 </body>
